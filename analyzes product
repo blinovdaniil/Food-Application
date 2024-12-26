@@ -1,0 +1,27 @@
+import pandas as pd
+
+# Example data
+data = {
+    'product': ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
+    'requests': [120, 150, 100, 80, 200],
+    'ratings': [4.5, 4.0, 3.5, 4.8, 4.2]
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+print("Initial Data:\n", df)
+
+# Calculate average rating
+average_rating = df['ratings'].mean()
+print("Average Rating:", average_rating)
+
+# Find the product with the highest number of requests and highest rating
+most_requested_product = df.loc[df['requests'].idxmax()]
+highest_rated_product = df.loc[df['ratings'].idxmax()]
+
+print("Most Requested Product:\n", most_requested_product)
+print("Highest Rated Product:\n", highest_rated_product)
+
+# Provide recommendation based on both requests and ratings
+recommended_products = df.loc[(df['requests'] > df['requests'].mean()) & (df['ratings'] > average_rating)]
+print("Recommended Products:\n", recommended_products)
